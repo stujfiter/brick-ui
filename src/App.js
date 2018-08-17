@@ -28,11 +28,32 @@ class NewPiece extends Component {
 }
 
 class BrickList extends Component {
-  constructor(props) {
+  render() {
+    const listItems = [];
+
+    this.props.bricks.forEach((brick) => {
+      listItems.push(
+        <li key={brick.description}>{brick.description}</li>
+      );
+    });
+
+    return (
+      <div className="brick-list">
+        <ul>
+          {listItems}
+        </ul>
+      </div>
+    );
+  }
+}
+
+class App extends Component {
+  constructor (props) {
     super(props);
     this.state = {
       bricks: []
     };
+
     this.onAddBrick = this.onAddBrick.bind(this);
   }
 
@@ -60,29 +81,11 @@ class BrickList extends Component {
   }
 
   render() {
-    const listItems = [];
-
-    this.state.bricks.forEach((brick) => {
-      listItems.push(
-        <li key={brick.description}>{brick.description}</li>
-      );
-    });
-
-    return (
-      <div className="App">
-        <NewPiece onAddBrick={this.onAddBrick}/>
-        {listItems}
-      </div>
-    );
-  }
-}
-
-class App extends Component {
-  render() {
     return (
       <div id="root" className="App">
-        Brick-by-Brick!
-        <BrickList />
+        <h1>Brick-by-Brick!</h1>
+        <NewPiece onAddBrick={this.onAddBrick}/>
+        <BrickList bricks={this.state.bricks}/>
       </div>
     );
   }

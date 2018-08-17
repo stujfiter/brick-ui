@@ -26,3 +26,24 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App button, input {
+  font-size: x-large;
+}
+
+.brick-list ul {
+  list-style: none;
+  padding: 0px;
+  font-size: x-large;
+}
+
+.brick-list {
+  width: 300px;
+  margin: auto;
+  padding: 0px;
+  list-style: none;
+}
+
+.brick-list li {
+  border-bottom: 1px solid;
+}

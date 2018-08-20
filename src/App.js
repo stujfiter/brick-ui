@@ -4,23 +4,41 @@ import './App.css';
 class NewPiece extends Component {
   constructor(props) {
     super(props);
-    this.state = {description: ''}
+    this.state = {
+      description: '',
+      partNumber: ''
+    }
+
     this.handleAddBrick = this.handleAddBrick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handlePartNumberChange = this.handlePartNumberChange.bind(this);
   }
 
   handleAddBrick() {
-    this.props.onAddBrick(this.state.description);
+    this.props.onAddBrick(this.state.partNumber, this.state.description);
   }
 
-  handleChange(event) {
+  handleDescriptionChange(event) {
     this.setState({description: event.target.value});
+  }
+  
+  handlePartNumberChange(event) {
+    this.setState({partNumber: event.target.value});
   }
 
   render() {
     return (
       <div id="newPiece">
-        <input type="text" value={this.state.description} onChange={this.handleChange} />
+        <input type="text"
+          value={this.state.partNumber}
+          placeholder="Part Number"
+          onChange={this.handlePartNumberChange} />
+
+        <input type="text" 
+          value={this.state.description} 
+          placeholder="Description" 
+          onChange={this.handleDescriptionChange} />
+
         <button onClick={this.handleAddBrick} >Add</button>
       </div>
     );
@@ -33,15 +51,22 @@ class BrickList extends Component {
 
     this.props.bricks.forEach((brick) => {
       listItems.push(
-        <li key={brick.description}>{brick.description}</li>
+        <tr key={brick.description}>
+        <td>{brick.partNumber}</td>
+        <td>{brick.description}</td>
+        </tr>
       );
     });
 
     return (
       <div className="brick-list">
-        <ul>
+        <table>
+          <tr>
+            <th>Part Number</th>
+            <th>Description</th>
+          </tr>
           {listItems}
-        </ul>
+        </table>
       </div>
     );
   }
@@ -63,7 +88,7 @@ class App extends Component {
     .then(results => { this.setState({bricks: results})} );
   }
 
-  onAddBrick(brick) {
+  onAddBrick(partNumber, description) {
     fetch("http://localhost:5000/api/bricks", {
       method: 'POST',
       headers: {
@@ -71,12 +96,17 @@ class App extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        description: brick
+        partNumber: partNumber,
+        description: description
       })
     })
 
     this.setState({
-      bricks: this.state.bricks.concat([{description: brick}])
+      bricks: this.state.bricks.concat([{
+        partNumber: partNumber,
+        description: description
+
+      }])
     });
   }
 

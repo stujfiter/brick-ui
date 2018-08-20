@@ -36,19 +36,20 @@
   border-width: 2px;
 }
 
-.brick-list ul {
+.brick-list table {
   list-style: none;
   padding: 0px;
   font-size: x-large;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .brick-list {
-  width: 300px;
-  margin: auto;
+  width: 400px;
+  margin: 20px auto 10px auto;
   padding: 0px;
-  list-style: none;
 }
 
-.brick-list li {
+.brick-list td,th {
   border-bottom: 1px solid;
 }

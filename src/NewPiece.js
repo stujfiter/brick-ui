@@ -5,7 +5,9 @@ class NewPiece extends Component {
       super(props);
       this.state = {
         description: '',
-        partNumber: ''
+        partNumber: '',
+        partNumberValid: true,
+        descriptionValid: true
       }
   
       this.handleAddBrick = this.handleAddBrick.bind(this);
@@ -14,7 +16,26 @@ class NewPiece extends Component {
     }
   
     handleAddBrick() {
-      this.props.onAddBrick(this.state.partNumber, this.state.description);
+      var partNumberValid = true;
+      var descriptionValid = true;
+
+      if (this.state.partNumber.trim() === '') {
+        this.setState({partNumberValid: false});
+        partNumberValid = false;
+      } else {
+        this.setState({partNumberValid: true});
+      }
+
+      if (this.state.description.trim() === '') {
+        this.setState({descriptionValid: false});
+        descriptionValid = false;
+      } else {
+        this.setState({descriptionValid: true});
+      }
+      
+      if (partNumberValid && descriptionValid) {
+        this.props.onAddBrick(this.state.partNumber, this.state.description);
+      }
     }
   
     handleDescriptionChange(event) {
@@ -29,11 +50,13 @@ class NewPiece extends Component {
       return (
         <div id="newPiece">
           <input type="text"
+            className={this.state.partNumberValid ? "valid" : "invalid"}
             value={this.state.partNumber}
             placeholder="Part Number"
             onChange={this.handlePartNumberChange} />
   
-          <input type="text" 
+          <input type="text"
+            className={this.state.descriptionValid ? "valid": "invalid"} 
             value={this.state.description} 
             placeholder="Description" 
             onChange={this.handleDescriptionChange} />

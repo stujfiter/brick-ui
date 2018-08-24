@@ -36,6 +36,15 @@
   border-width: 2px;
 }
 
+.App button:focus, input:focus {
+  outline: none;
+  background-color: azure;
+}
+
+input.invalid {
+  background-color: mistyrose;
+}
+
 .brick-list table {
   list-style: none;
   padding: 0px;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BrickList from './BrickList.js'
-import NewPiece from './NewPiece.js'
+import NewPart from './NewPart.js'
 import './App.css';
 
 class App extends Component {
@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <div id="root" className="App">
         <h1>Brick-by-Brick!</h1>
-        <NewPiece onAddBrick={this.onAddBrick}/>
+        <NewPart onAddBrick={this.onAddBrick}/>
         <BrickList bricks={this.state.bricks}/>
       </div>
     );

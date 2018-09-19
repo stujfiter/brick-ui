@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class NewPiece extends Component {
+class NewPart extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -48,7 +48,7 @@ class NewPiece extends Component {
   
     render() {
       return (
-        <div id="newPiece">
+        <div id="newPart">
           <input type="text"
             className={this.state.partNumberValid ? "valid" : "invalid"}
             value={this.state.partNumber}
@@ -67,4 +67,4 @@ class NewPiece extends Component {
     }
   }
 
-  export default NewPiece;
+  export default NewPart;

@@ -54,11 +54,21 @@ input.invalid {
 }
 
 .brick-list {
-  width: 400px;
-  margin: 20px auto 10px auto;
+  width: 970px;
+  height: 880px;
+  margin: 20px auto auto auto;
   padding: 0px;
 }
 
 .brick-list td,th {
   border-bottom: 1px solid;
+}
+
+.brick-item {
+  width: 200px;
+  float: left;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  text-align: left;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BrickList from './BrickList.js'
+import PartList from './PartList.js'
 import NewPart from './NewPart.js'
 import './App.css';
 
@@ -7,19 +7,19 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      bricks: []
+      parts: []
     };
 
-    this.onAddBrick = this.onAddBrick.bind(this);
+    this.onAddPart = this.onAddPart.bind(this);
   }
 
   componentDidMount() {
     fetch("http://localhost:5000/api/bricks")
     .then(res => res.json())
-    .then(results => { this.setState({bricks: results})} );
+    .then(results => { this.setState({parts: results})} );
   }
 
-  onAddBrick(partNumber, description) {
+  onAddPart(partNumber, description) {
     fetch("http://localhost:5000/api/bricks", {
       method: 'POST',
       headers: {
@@ -33,7 +33,7 @@ class App extends Component {
     })
 
     this.setState({
-      bricks: this.state.bricks.concat([{
+      parts: this.state.parts.concat([{
         partNumber: partNumber,
         description: description
 
@@ -45,8 +45,8 @@ class App extends Component {
     return (
       <div id="root" className="App">
         <h1>Brick-by-Brick!</h1>
-        <NewPart onAddBrick={this.onAddBrick}/>
-        <BrickList bricks={this.state.bricks}/>
+        <NewPart onAddPart={this.onAddPart}/>
+        <PartList parts={this.state.parts}/>
       </div>
     );
   }

@@ -10,12 +10,12 @@ class NewPart extends Component {
         descriptionValid: true
       }
   
-      this.handleAddBrick = this.handleAddBrick.bind(this);
+      this.handleAddPart = this.handleAddPart.bind(this);
       this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
       this.handlePartNumberChange = this.handlePartNumberChange.bind(this);
     }
   
-    handleAddBrick() {
+    handleAddPart() {
       var partNumberValid = true;
       var descriptionValid = true;
 
@@ -34,7 +34,7 @@ class NewPart extends Component {
       }
       
       if (partNumberValid && descriptionValid) {
-        this.props.onAddBrick(this.state.partNumber, this.state.description);
+        this.props.onAddPart(this.state.partNumber, this.state.description);
       }
     }
   
@@ -61,7 +61,7 @@ class NewPart extends Component {
             placeholder="Description" 
             onChange={this.handleDescriptionChange} />
   
-          <button onClick={this.handleAddBrick} >Add</button>
+          <button onClick={this.handleAddPart} >Add</button>
         </div>
       );
     }

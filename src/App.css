@@ -45,26 +45,14 @@ input.invalid {
   background-color: mistyrose;
 }
 
-.brick-list table {
-  list-style: none;
-  padding: 0px;
-  font-size: x-large;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.brick-list {
+.part-list {
   width: 970px;
   height: 880px;
   margin: 20px auto auto auto;
   padding: 0px;
 }
 
-.brick-list td,th {
-  border-bottom: 1px solid;
-}
-
-.brick-item {
+.part-card {
   width: 200px;
   float: left;
   border: 1px solid black;

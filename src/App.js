@@ -36,7 +36,6 @@ class App extends Component {
       parts: this.state.parts.concat([{
         partNumber: partNumber,
         description: description
-
       }])
     });
   }

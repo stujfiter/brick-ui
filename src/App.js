@@ -22,7 +22,7 @@ class App extends Component {
     .then(results => { this.setState({parts: results})} );
   }
 
-  onAddPart(partNumber, description) {
+  onAddPart(partNumber, description, image) {
     fetch("http://localhost:5000/api/bricks", {
       method: 'POST',
       headers: {
@@ -31,14 +31,16 @@ class App extends Component {
       },
       body: JSON.stringify({
         partNumber: partNumber,
-        description: description
+        description: description,
+        image: image
       })
     })
 
     this.setState({
       parts: this.state.parts.concat([{
         partNumber: partNumber,
-        description: description
+        description: description,
+        image: image
       }]),
       showNewPart: false
     });

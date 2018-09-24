@@ -9,13 +9,15 @@ class NewPartModal extends Component {
             description: '',
             partNumber: '',
             partNumberValid: true,
-            descriptionValid: true
+            descriptionValid: true,
+            uploadedFile: ''
         }
 
         this.handleAddPart = this.handleAddPart.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePartNumberChange = this.handlePartNumberChange.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleImageDrop = this.handleImageDrop.bind(this);
     }
 
     handleAddPart() {
@@ -37,7 +39,7 @@ class NewPartModal extends Component {
         }
         
         if (partNumberValid && descriptionValid) {
-          this.props.onAddPart(this.state.partNumber, this.state.description);
+          this.props.onAddPart(this.state.partNumber, this.state.description, this.state.uploadedFile);
         }
     }
 
@@ -53,17 +55,32 @@ class NewPartModal extends Component {
         this.props.onCloseModal();
     }
 
+    handleImageDrop(files) {
+        var reader = new FileReader();
+        var self = this;
+        reader.readAsDataURL(files[0]);
+        reader.onload = function () {
+            console.log(reader.result);
+            self.setState({uploadedFile: reader.result});
+        }
+    }
+
     render() {
         return (
           <div className="new-part-modal">
             <div className="new-part-content">
                 <div className="new-part-close" onClick={this.handleCloseModal}>X</div>
 
-                <Dropzone
+                {(this.state.uploadedFile === '') && <Dropzone
                     className="new-part-dropzone"
-                    accept="image/jpg">
+                    accept="image/jpg, image/jpeg"
+                    onDrop={this.handleImageDrop}>
                     <p>Drop an image or click to select a file to upload.</p>
-                </Dropzone>
+                </Dropzone>}
+
+                {!(this.state.uploadedFile === '') &&
+                    <img src={this.state.uploadedFile} alt="Unavailable" width="500" height="500"/>
+                }
 
                 <input type="text"
                     className={this.state.partNumberValid ? "valid" : "invalid"}

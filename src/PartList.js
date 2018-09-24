@@ -10,7 +10,7 @@ class PartCard extends Component {
   render() {
     var src;
     if (this.props.image) {
-      src = "data:image/jpeg;base64, "+this.props.image;
+      src = this.props.image;
     } else {
       src = "/pile-o-bricks.jpeg"
     }
@@ -44,10 +44,6 @@ class NewPartCard extends Component {
 }
 
 class PartList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const listItems = [];
     listItems.push(<NewPartCard key="newPartCard" onShowNewPart={this.props.onShowNewPart}/>);

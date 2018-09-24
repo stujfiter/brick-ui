@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PartList from './PartList.js'
-import NewPart from './NewPart.js'
+import PartList from './PartList.js';
+import NewPart from './NewPart.js';
+import NewPartModal from './NewPartModal';
 import './App.css';
 
 class App extends Component {
@@ -46,6 +47,7 @@ class App extends Component {
         <h1>Brick-by-Brick!</h1>
         <NewPart onAddPart={this.onAddPart}/>
         <PartList parts={this.state.parts}/>
+        <NewPartModal />
       </div>
     );
   }

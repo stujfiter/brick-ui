@@ -54,6 +54,7 @@ input.invalid {
 
 .part-card {
   width: 180px;
+  height: 220px;
   float: left;
   border: 1px solid black;
   margin: 10px;
@@ -65,7 +66,7 @@ input.invalid {
 }
 
 .new-part-modal {
-  display: none;
+  /* display: block; */
   position: fixed;
   top: 0;
   left: 0;
@@ -103,9 +104,14 @@ input.invalid {
   left: 534px;
   width: 30px;
   height: 30px;
-  background-color: #ccc;
+  background-color: mistyrose;
   text-align: center;
   border-radius: 15px;
   line-height: 30px;
   font-weight: bold;
+}
+
+.new-part-add {
+  float: right;
+  vertical-align: bottom;
 }

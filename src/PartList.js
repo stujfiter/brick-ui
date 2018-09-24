@@ -24,27 +24,51 @@ class PartCard extends Component {
   }
 }
 
-class PartList extends Component {
-    render() {
-      const listItems = [];
-  
-      this.props.parts.forEach((part) => {
-        listItems.push(
-          <PartCard 
-            key={part.partNumber} 
-            partNumber={part.partNumber} 
-            description={part.description}
-            image={part.image}
-          />
-        );
-      });
-  
-      return (
-        <div className="part-list">
-          {listItems}
-        </div>
-      );
-    }
+class NewPartCard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleShowNewPart = this.handleShowNewPart.bind(this);
   }
 
-  export default PartList;
+  handleShowNewPart(event) {
+    this.props.onShowNewPart();
+  }
+
+  render() {
+    return (
+    <div className="part-card" onClick={this.handleShowNewPart}>
+      <img src="/AddNew.jpg" alt="new part" width="180" height="180" />
+    </div>
+    )}
+}
+
+class PartList extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const listItems = [];
+    listItems.push(<NewPartCard key="newPartCard" onShowNewPart={this.props.onShowNewPart}/>);
+
+    this.props.parts.forEach((part) => {
+      listItems.push(
+        <PartCard 
+          key={part.partNumber} 
+          partNumber={part.partNumber} 
+          description={part.description}
+          image={part.image}
+        />
+      );
+    });
+
+    return (
+      <div className="part-list">
+        {listItems}
+      </div>
+    );
+  }
+}
+
+export default PartList;

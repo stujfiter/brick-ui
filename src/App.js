@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PartList from './PartList.js';
-import NewPart from './NewPart.js';
 import NewPartModal from './NewPartModal';
 import './App.css';
 
@@ -8,10 +7,13 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      parts: []
+      parts: [],
+      showNewPart: false
     };
 
     this.onAddPart = this.onAddPart.bind(this);
+    this.onShowNewPart = this.onShowNewPart.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
   }
 
   componentDidMount() {
@@ -37,17 +39,25 @@ class App extends Component {
       parts: this.state.parts.concat([{
         partNumber: partNumber,
         description: description
-      }])
+      }]),
+      showNewPart: false
     });
+  }
+
+  onShowNewPart() {
+    this.setState({showNewPart: true});
+  }
+
+  onCloseModal() {
+    this.setState({showNewPart: false});
   }
 
   render() {
     return (
       <div id="root" className="App">
         <h1>Brick-by-Brick!</h1>
-        <NewPart onAddPart={this.onAddPart}/>
-        <PartList parts={this.state.parts}/>
-        <NewPartModal />
+        <PartList parts={this.state.parts} onShowNewPart={this.onShowNewPart}/>
+        {this.state.showNewPart && <NewPartModal onAddPart={this.onAddPart} onCloseModal={this.onCloseModal}/>}
       </div>
     );
   }

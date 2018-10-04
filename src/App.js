@@ -17,13 +17,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/api/bricks")
+    fetch(`http://${process.env.REACT_APP_API_HOST}:5000/api/bricks`)
     .then(res => res.json())
     .then(results => { this.setState({parts: results})} );
   }
 
   onAddPart(partNumber, description, image) {
-    fetch("http://localhost:5000/api/bricks", {
+    fetch(`http://${process.env.REACT_APP_API_HOST}:5000/api/bricks`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

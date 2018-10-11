@@ -1,4 +1,4 @@
-FROM node
+FROM node:alpine
 
 ENV API_HOST=localhost
 

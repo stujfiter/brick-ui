@@ -86,13 +86,15 @@ class NewPartModal extends Component {
                     className={this.state.partNumberValid ? "valid" : "invalid"}
                     value={this.state.partNumber}
                     placeholder="Part Number"
-                    onChange={this.handlePartNumberChange} />
+                    onChange={this.handlePartNumberChange} 
+                    maxLength="50"/>
                 <br />
                 <input type="text"
                     className={this.state.descriptionValid ? "valid": "invalid"} 
                     value={this.state.description} 
                     placeholder="Description" 
-                    onChange={this.handleDescriptionChange} />
+                    onChange={this.handleDescriptionChange} 
+                    maxLength="100" />
 
                 <button className="new-part-add"
                     onClick={this.handleAddPart}>

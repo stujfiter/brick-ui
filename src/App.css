@@ -56,13 +56,21 @@ input.invalid {
   width: 180px;
   height: 220px;
   float: left;
-  border: 1px solid black;
   margin: 10px;
   padding: 10px;
+  
   text-align: left;
+  
+  border: 1px solid black;
   border-radius: 8px;
   border-style: solid;
   border-width: 2px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .new-part-modal {

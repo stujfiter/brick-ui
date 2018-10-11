@@ -18,7 +18,7 @@ class PartCard extends Component {
       <div className="part-card">
         <img src={src} alt="unavailable" width="180" height="180"/>
         <div>{this.props.partNumber}</div>
-        <div>{this.props.description}</div>
+        <div className="truncate">{this.props.description}</div>
       </div>
     )
   }

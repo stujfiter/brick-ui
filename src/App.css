@@ -87,7 +87,7 @@ input.invalid {
 
 .new-part-content {
   width: 512px; /* drop-zone.width + (drop-zone.border+drop-zone.margin)*2 */
-  height: 600px;
+  height: auto;
   margin: auto;
   padding: 20px;
   background-color: #ffffff;

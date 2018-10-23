@@ -22,12 +22,13 @@ class App extends Component {
     .then(results => { this.setState({parts: results})} );
   }
 
-  onAddPart(partNumber, description, image) {
+  onAddPart(partNumber, description, image, auth_code) {
     fetch(`http://${process.env.REACT_APP_API_HOST}:5000/api/bricks`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth': auth_code
       },
       body: JSON.stringify({
         partNumber: partNumber,

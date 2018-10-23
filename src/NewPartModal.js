@@ -8,14 +8,17 @@ class NewPartModal extends Component {
         this.state = {
             description: '',
             partNumber: '',
+            authCode: '',
             partNumberValid: true,
             descriptionValid: true,
+            authCodeValid: '',
             uploadedFile: ''
         }
 
         this.handleAddPart = this.handleAddPart.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePartNumberChange = this.handlePartNumberChange.bind(this);
+        this.handleAuthCodeChange = this.handleAuthCodeChange.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleImageDrop = this.handleImageDrop.bind(this);
     }
@@ -23,6 +26,7 @@ class NewPartModal extends Component {
     handleAddPart() {
         var partNumberValid = true;
         var descriptionValid = true;
+        var authCodeValid = true;
   
         if (this.state.partNumber.trim() === '') {
           this.setState({partNumberValid: false});
@@ -37,9 +41,16 @@ class NewPartModal extends Component {
         } else {
           this.setState({descriptionValid: true});
         }
+
+        if (this.state.authCode.trim() === '') {
+          this.setState({authCodeValid: false});
+          authCodeValid = false;
+        } else {
+          this.setState({authCodeValid: true});
+        }
         
-        if (partNumberValid && descriptionValid) {
-          this.props.onAddPart(this.state.partNumber, this.state.description, this.state.uploadedFile);
+        if (partNumberValid && descriptionValid && authCodeValid) {
+          this.props.onAddPart(this.state.partNumber, this.state.description, this.state.uploadedFile, this.state.authCode);
         }
     }
 
@@ -49,6 +60,10 @@ class NewPartModal extends Component {
     
     handlePartNumberChange(event) {
         this.setState({partNumber: event.target.value});
+    }
+
+    handleAuthCodeChange(event) {
+        this.setState({authCode: event.target.value});
     }
 
     handleCloseModal(event) {
@@ -95,6 +110,13 @@ class NewPartModal extends Component {
                     placeholder="Description" 
                     onChange={this.handleDescriptionChange} 
                     maxLength="100" />
+                
+                <br />
+                <input type="password"
+                    clasName={this.state.authCodeValid ? "valid": "invalid"}
+                    placeholder="Secret Code"
+                    onChange={this.handleAuthCodeChange}
+                    maxLength="20" />
 
                 <button className="new-part-add"
                     onClick={this.handleAddPart}>
